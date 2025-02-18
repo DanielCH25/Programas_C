@@ -1,0 +1,12 @@
+#include<stdio.h>//la almohadilla es una instruccion
+//al preprocesador
+
+int main(){
+	char res;
+	
+	printf("Hello word");
+	printf("\nToca calquier tecla para para finalizar: ");
+	scanf("%l",&res);//%l es el descriptor
+	return 0; 
+	
+}
