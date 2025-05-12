@@ -1,1 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char palabra[6];
+    printf("Palabra: ");
+    scanf("%s", palabra);
+
+    char letra;
+    int cont = 0;
+    printf("Letra a contar: ");
+    scanf(" %c", &letra);
+    for (int i = 0; palabra[i]; i++)
+        if (palabra[i] == letra)
+            cont++;
+    printf("\nAparece %d veces", cont);
+
+    int pos;
+    printf("\nPosicion (0 a 4): ", strlen(palabra) - 1);
+    scanf("%d", &pos);
+    if (pos >= 0 & pos < strlen(palabra))
+        printf("\nLetra en esa posicion: %c", palabra[pos]);
+    
+    return 0;
+}
+
 
