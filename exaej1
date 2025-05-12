@@ -1,0 +1,88 @@
+#include<stdio.h>
+
+void menu(){
+	printf("\n*********************************************");
+	printf("\n********                            *********");
+	printf("\n********           MENU             *********");
+	printf("\n********                            *********");
+	printf("\n********                            *********");
+	printf("\n*********************************************");
+	
+}
+void intercambio(int *pa,int *pb){
+	int *paux;
+	paux=pa;
+	pa=pb;
+	pb=paux;
+	printf("\nEn la funcion: ");
+	printf("\nnum1 = %d",*pa);
+	printf("\nnum2 = %d",*pb);
+	
+}
+
+int mayor(int num1, int num2) {
+    if (num1 > num2)
+        return num1;
+    else
+        return num2;
+}
+
+int main() {
+    int num1;
+	int num2;
+	int aux;
+	int opcion;
+	int diferencia;
+	
+	printf("Dame el primer numero entero: ");
+    scanf("%d", &num1);
+    printf("Dame el segundo numero entero: ");
+    scanf("%d", &num2);
+    
+    printf("\n 1. DECIDIR CUAL ES EL MAYOR");
+    printf("\n 2. HALLAR LA DIFERENCIA ENTRE AMBOS");
+    printf("\n 3. INTERCAMBIAR SUS VALORES");
+    printf("\n 4. DESPEDIRSE Y SALIR");
+    printf("\n Elige una opcion (1-5): ");
+    scanf("%d",&opcion);
+    switch(opcion){
+        case 1:
+            printf("\nEl mayor de los dos numeros es: %d", mayor(num1, num2));
+            break;
+        case 2:
+            diferencia=num1-num2;
+                if (diferencia < 0) {
+                    printf("Error: la diferencia es negativa. Por favor ingrese nuevos numeros.\n");
+                    printf("Dame el primer numero entero: ");
+                    scanf("%d", &num1);
+                    printf("Dame el segundo numero entero: ");
+                    scanf("%d", &num2);
+                } else {
+                    printf("La diferencia entre los dos numeros es: %d\n", diferencia);
+                }
+            break;
+            
+        case 3:
+           // OpciÃ³n 3: Intercambiar valores
+                printf("\nANTES DEL INTERCAMBIO: ");
+	printf("\nnum1 = %d",num1);
+	printf("\nnum2 = %d",num2);
+	//ahora hacemos el intercambio
+	printf("\nEnvio la &a=%p , &b=%p",&num1,&num2);
+	intercambio(&num1,&num2);
+	printf("\nDESPUES DEL INTERCAMBIO: ");
+	printf("\nnum1 = %d",num1);
+	printf("\nnum2 = %d",num2);
+	aux=num1;
+	num1=num2;
+	num1=aux;
+	return 0;
+                printf("\nLos valores han sido intercambiados: num1 = %d, num2 = %d", num1, num2);
+            break;
+        case 4:
+            printf("\nADIOS :)");
+            break;
+                   
+        }
+    return 0;
+    }
