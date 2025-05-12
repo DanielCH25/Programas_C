@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+void intercambiar(int numeros[], int pos1, int pos2) {
+    int aux = numeros[pos1];
+    numeros[pos1] = numeros[pos2];
+    numeros[pos2] = aux;
+}
+void repetidos(int numeros[]) {
+    for (int i = 0; i < 5; i++) {
+        for (int j = i + 1; j < 5; j++) {
+            if (numeros[i] == numeros[j]) {
+                printf("\nverdadero (hay numeros repetidos)\n");
+                return;
+            }
+        }
+    }
+}
+
+int main() {
+    int numeros[5];
+    int suma = 0;
+    int max, min;
+
+    for (int i = 0; i < 5; i++) {
+        printf("Dime un numero: ");
+        scanf("%d", &numeros[i]);
+        suma=suma+ numeros[i];
+
+        if (i == 0) {
+            max = min = numeros[i];
+        } else {
+            if (numeros[i] > max) 
+			max = numeros[i];
+            if (numeros[i] < min) 
+			min = numeros[i];
+        }
+    }
+
+    int rango=max-min;
+
+    printf("\nLa suma vale = %d", suma);
+    printf("\nEl rango vale = %d", rango);
+
+    repetidos(numeros);
+
+   
+    int pos1, pos2;
+    printf("\nDime las posicione que quieras intercambiar: ");
+    scanf("%d %d", &pos1, &pos2);
+
+    intercambiar(numeros, pos1, pos2);
+
+    printf("\nVector final: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", numeros[i]);
+    }
+
+    return 0;
+}
