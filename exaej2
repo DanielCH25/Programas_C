@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MIEMBROS 4
+
+struct Persona {
+    char*nombre; 
+    int edad;
+    char papel;     
+    char fechaNacimiento[11]; // Fecha de nacimiento en formato dd/mm/aaaa
+};
+
+int main() {
+    struct Persona miFamilia[MIEMBROS];
+    int cont, menoresDeEdad = 0;
+
+    // IntroducciÃƒÂ³n de los miembros de la familia
+    for (cont = 0; cont < MIEMBROS; cont++) {
+        miFamilia[cont].nombre =(char*)malloc(20*sizeof(char)); // Reservamos memoria para el nombre
+        
+
+        // Pedir datos de cada miembro
+        printf("Introduce el nombre del miembro %d: ",cont+1);
+        scanf("%s", miFamilia[cont].nombre);
+        printf("Introduce la edad de %s: ", miFamilia[cont].nombre);
+        scanf("%d", &miFamilia[cont].edad);
+        printf("Introduce el papel de %s (P->padre, M->madre, H->hijo/a): ", miFamilia[cont].nombre);
+        scanf(" %c", &miFamilia[cont].papel);  // Nota: el espacio antes de %c para limpiar el buffer
+        printf("Introduce la fecha de nacimiento de %s (dd/mm/aaaa): ", miFamilia[cont].nombre);
+        scanf("%s", miFamilia[cont].fechaNacimiento);
+    }
+        // Contamos los menores de edad
+        if (miFamilia[cont].edad < 18) {
+            menoresDeEdad++;
+        }
+    
+
+    // Mostrar la lista de miembros de la familia
+    printf("\nLista de miembros de la familia:");
+    for (cont = 0; cont < MIEMBROS; cont++) {
+        printf("\n%s\t%d\t%c", miFamilia[cont].nombre, miFamilia[cont].edad, miFamilia[cont].papel);
+    }
+
+    // Mostrar cuÃƒÂ¡ntos son menores de edad
+    printf("\nNumero de miembros menores de edad: %d\n", menoresDeEdad);
+
+
+    return 0;
+}
