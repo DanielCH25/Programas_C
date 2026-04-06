@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    float suma = 0.0;
+
+    printf("=== CALCULADORA DE PRODUCTO ESCALAR ===\n");
+    
+    // 1. Definir el tamaño
+    printf("¿De cuántas dimensiones son tus vectores?: ");
+    scanf("%d", &n);
+
+    // Creamos los arreglos (vectores)
+    float vecA[n], vecB[n];
+
+    // 2. Pedir datos del Vector A
+    printf("\n--- Ingreso de datos para el Vector A ---\n");
+    for (int i = 0; i < n; i++) {
+        printf("Elemento A[%d]: ", i + 1);
+        scanf("%f", &vecA[i]);
+    }
+
+    // 3. Pedir datos del Vector B
+    printf("\n--- Ingreso de datos para el Vector B ---\n");
+    for (int i = 0; i < n; i++) {
+        printf("Elemento B[%d]: ", i + 1);
+        scanf("%f", &vecB[i]);
+    }
+
+    // 4. MOSTRAR LOS COMPONENTES (Para verificar)
+    printf("\n>>> Los vectores ingresados son:\n");
+    printf("Vector A = [ ");
+    for (int i = 0; i < n; i++) {
+        printf("%.2f ", vecA[i]);
+    }
+    printf("]\n");
+
+    printf("Vector B = [ ");
+    for (int i = 0; i < n; i++) {
+        printf("%.2f ", vecB[i]);
+    }
+    printf("]\n");
+
+    // 5. CÁLCULO DEL PRODUCTO ESCALAR
+    // Multiplicamos cada posición y la sumamos al total
+    for (int i = 0; i < n; i++) {
+        suma = suma + (vecA[i] * vecB[i]);
+    }
+
+    // 6. RESULTADO FINAL
+    printf("\n======================================\n");
+    printf("EL PRODUCTO ESCALAR ES: %.2f\n", suma);
+    printf("======================================\n");
+
+    return 0;
+}
