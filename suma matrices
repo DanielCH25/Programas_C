@@ -9,8 +9,8 @@ int main() {
     printf("=== SUMA DE MATRICES %dx%d ===\n", DIM, DIM);
 
     printf("\n--- Ingresa datos para la Matriz A ---\n");
-    for (int i = 0; i < DIM; i++) {           // i controla las FILAS
-        for (int j = 0; j < DIM; j++) {       // j controla las COLUMNAS
+    for (int i = 0; i < DIM; i++) { 
+        for (int j = 0; j < DIM; j++) {   
             printf("Fila %d, Columna %d: ", i + 1, j + 1);
             scanf("%d", &matrizA[i][j]);
         }
@@ -23,14 +23,12 @@ int main() {
             scanf("%d", &matrizB[i][j]);
         }
     }
-
     //CALCULO DE LA SUMA
     for (int i = 0; i < DIM; i++) {
         for (int j = 0; j < DIM; j++) {
             suma[i][j] = matrizA[i][j] + matrizB[i][j];
         }
     }
-
     printf("\n=== MATRIZ RESULTADO ===\n");
     for (int i = 0; i < DIM; i++) {
         printf("| ");
