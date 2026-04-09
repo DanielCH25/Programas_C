@@ -1,0 +1,44 @@
+#include <stdio.h>
+#define DIM 2 
+
+int main() {
+    int matrizA[DIM][DIM];
+    int matrizB[DIM][DIM];
+    int suma[DIM][DIM];
+
+    printf("=== SUMA DE MATRICES %dx%d ===\n", DIM, DIM);
+
+    printf("\n--- Ingresa datos para la Matriz A ---\n");
+    for (int i = 0; i < DIM; i++) {           // i controla las FILAS
+        for (int j = 0; j < DIM; j++) {       // j controla las COLUMNAS
+            printf("Fila %d, Columna %d: ", i + 1, j + 1);
+            scanf("%d", &matrizA[i][j]);
+        }
+    }
+
+    printf("\n--- Ingresa datos para la Matriz B ---\n");
+    for (int i = 0; i < DIM; i++) {
+        for (int j = 0; j < DIM; j++) {
+            printf("Fila %d, Columna %d: ", i + 1, j + 1);
+            scanf("%d", &matrizB[i][j]);
+        }
+    }
+
+    //CALCULO DE LA SUMA
+    for (int i = 0; i < DIM; i++) {
+        for (int j = 0; j < DIM; j++) {
+            suma[i][j] = matrizA[i][j] + matrizB[i][j];
+        }
+    }
+
+    printf("\n=== MATRIZ RESULTADO ===\n");
+    for (int i = 0; i < DIM; i++) {
+        printf("| ");
+        for (int j = 0; j < DIM; j++) {
+            printf("%3d ", suma[i][j]);
+        }
+        printf("|\n");
+    }
+
+    return 0;
+}
