@@ -1,0 +1,47 @@
+#include <stdio.h>
+#define DIM 2 
+
+int main() {
+    int matrizA[DIM][DIM];
+    int matrizB[DIM][DIM];
+    int prod[DIM][DIM];
+
+    printf("=== MULTIPLICACION DE MATRICES %dx%d ===\n", DIM, DIM);
+
+    printf("\n--- Ingresa datos para la Matriz A ---\n");
+    for (int i = 0; i < DIM; i++) {        
+        for (int j = 0; j < DIM; j++) {      
+            printf("Fila %d, Columna %d: ", i + 1, j + 1);
+            scanf("%d", &matrizA[i][j]);
+        }
+    }
+
+    printf("\n--- Ingresa datos para la Matriz B ---\n");
+    for (int i = 0; i < DIM; i++) {
+        for (int j = 0; j < DIM; j++) {
+            printf("Fila %d, Columna %d: ", i + 1, j + 1);
+            scanf("%d", &matrizB[i][j]);
+        }
+    }
+
+    //CALCULO DE LA MULTI
+    for (int i = 0; i < DIM; i++) {     
+        for (int j = 0; j < DIM; j++) {  
+            prod[i][j] = 0;                 // Ponemos el contador a cero
+            for (int k=0;k<DIM;k++) {
+                prod[i][j]+= matrizA[i][k] * matrizB[k][j];
+        }
+    }
+}
+
+    printf("\n=== MATRIZ RESULTADO ===\n");
+    for (int i = 0; i < DIM; i++) {
+        printf("| ");
+        for (int j = 0; j < DIM; j++) {
+            printf("%3d ", prod[i][j]);
+        }
+        printf("|\n");
+    }
+
+    return 0;
+}
