@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int misterio(int a, int b) {
+    if (b == 0) {
+        return 0; 
+    } else {
+        return a + misterio(a, b - 1); 
+    }
+}
+
+int potencia(int a, int b) {
+    if (b == 0) {
+        return 1; 
+    } else {
+        return a * potencia(a, b - 1); 
+    }
+}
+
+int main() {
+    int base = 2;
+    int exponente = 3
+    int resultadoMisterio = misterio(base, exponente);
+    printf("Resultado de misterio(%d, %d) [Multiplicacion]: %d\n", base, exponente, resultadoMisterio);
+
+    int resultadoPotencia = potencia(base, exponente);
+    printf("Resultado de potencia(%d, %d) [Potencia]: %d\n", base, exponente, resultadoPotencia);
+
+    return 0;
+}
