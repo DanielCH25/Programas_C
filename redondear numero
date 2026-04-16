@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <math.h> 
+
+double redondear(double x, int n) {
+    double factor = pow(10, n);
+    double resultado = floor(x * factor + 0.5) / factor;
+    return resultado;
+}
+
+int main() {
+    double numero;
+    int decimales;
+
+    printf("Introduce un número real: ");
+    scanf("%lf", &numero); 
+
+    printf("¿A cuántos decimales quieres redondearlo?: ");
+    scanf("%d", &decimales);
+
+    double numero_redondeado = redondear(numero, decimales);
+
+    printf("El número %f redondeado a %d decimales es: %f\n", numero, decimales, numero_redondeado);
+
+    return 0;
+}
