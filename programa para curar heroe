@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+
+// 1. Definimos la estructura (El "molde" para los personajes)
+struct Personaje {
+    char nombre[50];
+    int nivel;
+    float vida;
+};
+
+// 2. Prototipos de los subprogramas (Las herramientas)
+void mostrarPersonaje(struct Personaje p);
+void curarPersonaje(struct Personaje *p, float pocion);
+
+int main() {
+    // 3. Creamos dos personajes distintos (Dos copias del molde)
+    struct Personaje heroe1;
+    struct Personaje heroe2;
+
+    // Rellenamos los datos de Arturo
+    strcpy(heroe1.nombre, "Arturo");
+    heroe1.nivel = 10;
+    heroe1.vida = 45.5;
+
+    // Rellenamos los datos de Sofia
+    strcpy(heroe2.nombre, "Sofia");
+    heroe2.nivel = 12;
+    heroe2.vida = 30.0;
+
+    // --- MOSTRAR ESTADO INICIAL ---
+    printf("=== ESTADO INICIAL DEL EQUIPO ===\n");
+    mostrarPersonaje(heroe1); // Aqui 'p' sera Arturo
+    mostrarPersonaje(heroe2); // Aqui 'p' sera Sofia
+
+    // --- ACCIONES ---
+    printf("\n... Arturo y Sofia encuentran una fuente de vida (+25) ...\n");
+    
+    // Pasamos la DIRECCION (&) de cada uno para que la cura sea real
+    curarPersonaje(&heroe1, 25.0); 
+    curarPersonaje(&heroe2, 25.0);
+    //Para qué sirve el & en nuestro caso?
+//Cuando llamamos a curarPersonaje(&heroe1, 20), le estamos diciendo al programa:
+//"Oye, no te lleves una copia de Arturo. Toma la dirección de memoria donde vive Arturo".
+
+    // --- MOSTRAR ESTADO FINAL ---
+    printf("\n=== ESTADO TRAS LA CURACION ===\n");
+    mostrarPersonaje(heroe1);
+    mostrarPersonaje(heroe2);
+
+    return 0;
+}
+
+// --- DESARROLLO DE LOS SUBPROGRAMAS ---
+
+// Esta funcion recibe una COPIA de la ficha (por eso no lleva *)
+void mostrarPersonaje(struct Personaje p) {
+    printf("[%s] -> Nivel: %d | Vida: %.1f\n", p.nombre, p.nivel, p.vida);
+}
+
+// Esta funcion recibe la DIRECCION REAL (por eso lleva * y usa ->)
+void curarPersonaje(struct Personaje *p, float pocion) {
+    // Vamos directamente a la memoria del heroe y sumamos la vida
+    p->vida = p->vida + pocion;
+}
+//3. La pareja inseparable: & y *
+//Para que esto funcione, el & y el * tienen que trabajar en equipo. Es como un lenguaje secreto entre el main y la función:
+//En el main usamos & (El mensajero): curarPersonaje(&heroe1, 20);
+//"Te envío la ubicación de heroe1".
+//En la función usamos * (El receptor): void curarPersonaje(struct Personaje *p, ...)
+//"Vale, acepto una ubicación (puntero) y la llamaré 'p'".
