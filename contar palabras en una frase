@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main() {
+    char texto[1000];
+    int conteo[26] = {0}; // 26 cajones, uno para cada letra (A-Z)
+    int i;
+
+    printf("Introduce un texto: ");
+    fgets(texto, 1000, stdin);
+
+    for (i = 0; texto[i] != '\0'; i++) {
+        char c = texto[i];
+        int indice = -1;
+
+        // Si es MINÚSCULA ('a' es 97, 'z' es 122)
+        if (c >= 'a' && c <= 'z') {
+            indice = c - 'a';
+        }
+        // Si es MAYÚSCULA ('A' es 65, 'Z' es 90)
+        else if (c >= 'A' && c <= 'Z') {
+            indice = c - 'A';
+        }
+
+        // Si el indice es valido (era una letra), sumamos al conteo
+        if (indice != -1) {
+            conteo[indice]++;
+        }
+    }
+
+    // 1. Mostrar cuantas hay de cada una
+    printf("\n--- Recuento de letras ---\n");
+    for (i = 0; i < 26; i++) {
+        if (conteo[i] > 0) {
+            printf("Letra %c: %d\n", i + 'a', conteo[i]);
+        }
+    }
+
+    // 2. Detectar cuales NO han aparecido
+    printf("\n--- Letras ausentes ---\n");
+    int ausentes = 0;
+    for (i = 0; i < 26; i++) {
+        if (conteo[i] == 0) {
+            printf("%c ", i + 'a');
+            ausentes++;
+        }
+    }
+
+    if (ausentes == 0) printf("¡Han aparecido todas!");
+    printf("\n");
+
+    return 0;
+}
