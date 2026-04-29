@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h> // Aqui vive strlen() y strcpy()
+
+int main() {
+    char original[100];
+    char palindromo[200]; // IMPORTANTE: El doble de tamaño para que quepan las dos partes
+    int i, longitud, pos_escritura;
+
+    printf("Introduce una palabra: ");
+    scanf("%s", original); // Usamos scanf porque solo queremos una palabra sin espacios
+
+    // 1. Averiguamos cuanto mide la palabra original
+    longitud = strlen(original);
+
+    // 2. Copiamos la palabra original en nuestra nueva variable
+    strcpy(palindromo, original); 
+    // Ahora 'palindromo' contiene: H o l a \0
+
+    // 3. Nos preparamos para pegar la parte invertida
+    // Empezaremos a escribir justo donde terminaba la original (sobrescribiendo su \0)
+    pos_escritura = longitud;
+
+    
+
+    // 4. Bucle para leer la original de atras hacia adelante
+    for (i = longitud - 1; i >= 0; i--) {
+        palindromo[pos_escritura] = original[i]; // Pegamos la letra
+        pos_escritura++; // Avanzamos a la siguiente caja vacia
+    }
+
+    // 5. ¡Cerrar la puerta! Toda cadena en C necesita terminar en nulo
+    palindromo[pos_escritura] = '\0';
+
+    // 6. Mostramos el resultado
+    printf("Palindromo generado: %s\n\n", palindromo);
+
+    return 0;
+}
