@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    char origen[] = "Programacion";
+    char destino[50]; // Espacio suficiente para la copia
+    int i;
+
+    // El bucle recorre 'origen' hasta encontrar el final '\0'
+    for (i = 0; origen[i] != '\0'; i++) {
+        destino[i] = origen[i]; // Copiamos el caracter de la misma posicion
+    }
+
+    // ¡MUY IMPORTANTE! 
+    // Como lo hacemos a mano, el '\0' no se copia solo.
+    // Hay que ponerlo al final para cerrar la cadena destino.
+    destino[i] = '\0';
+
+    printf("Cadena original: %s\n", origen);
+    printf("Cadena copiada:  %s\n", destino);
+
+    return 0;
+}
