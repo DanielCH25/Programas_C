@@ -1,0 +1,168 @@
+/* PROGRAMA QUE CUENTA LOS CARACTERES,
+   LINEAS, BLANCOS, TABULADORES, PALABRAS
+   O LAS REPETICIONES DE UN DETERMINADO CARACTER
+   DE UN TEXTO ESCRITO EN UN FICHERO DE NOMBRE
+   ALMACENADO EN LA STRING *s ;
+   EL PROGRAMA ESTA ESTRUCTURADO DE MANERA QUE
+   CADA UNA DE ESTAS ACCIONES ES REALIZADA
+   POR UNA FUNCION DISTINTA  */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+FILE *f;
+
+void cont_car(void);
+void cont_lin(void);
+void cont_blan(void);
+void cont_tab(void);
+void cont_pal(void);
+void cont_veces(void);
+
+main()
+{
+char cod='a';
+char s[20];
+printf("Introduce el nombre de un fichero: \n ");
+gets(s);
+f=fopen(s,"r");
+
+while(cod)
+{
+printf("\nIntroduce una letra: \n ");
+printf("    c:contar caracteres \n ");
+printf("    l:contar lineas \n ");
+printf("    b:contar blancos \n ");
+printf("    t:contar tabuladores \n ");
+printf("    p:contar palabras \n ");
+printf("    v:contar el numero de veces que sale un caracter \n ");
+printf("    f: fin de programa \n");
+
+fflush(stdin);
+cod=getchar();
+switch (cod) {
+   case  'c' : cont_car();
+	 break;
+   case  'l' : cont_lin();
+	 break;
+   case  'b' : cont_blan();
+	 break;
+   case  't' : cont_tab();
+	 break;
+   case  'p' : cont_pal();
+	 break;
+   case  'v' :  cont_veces();
+	 break;
+   case 'f':  return 0;
+     break;
+   default : printf("\n Has elegido mal la letra \n");
+	 break;
+  }
+  printf("\n\n");
+  system("pause");
+  system("cls");
+}
+fclose(f);
+printf("\n\n");
+system("PAUSE");
+}
+
+
+/* contaje de caracteres */
+
+void cont_car(void)
+{
+char c;
+long nc=0;
+
+while((c=getc(f))!=EOF)
+  if(c!='\n')++nc;
+
+printf("\n\n\n El numero de caracteres del texto es: %ld \n ",nc);
+}
+
+
+/*contaje de lineas*/
+
+void cont_lin(void)
+{
+char c;
+int nl=0;
+
+// Hacer código aquí
+
+
+printf("\n\n\n El numero de lineas del texto es: %d \n",nl+1);
+}
+
+
+/*contaje de blancos*/
+
+void cont_blan(void)
+{
+long nb=0;
+char c;
+
+// Hacer código aquí
+
+printf("\n\n\n El numero de blancos del texto es: %ld \n",nb);
+}
+
+
+/*contaje de tabuladores*/
+
+void cont_tab(void)
+{
+char c;
+int nt=0;
+
+// Hacer código aquí
+
+printf("\n\n\n El numero de tabuladores del texto es: %d \n ",nt);
+}
+
+
+/*Contaje de palabras */
+/* Esta ya construida. */
+
+void cont_pal(void)
+{
+long np=0;
+char c,c1;
+
+
+c=getc(f);
+while (c!=EOF)
+{
+  while (((c==' ')||(c=='\n')||(c=='\t'))&&(c!=EOF))
+    c=getc(f);
+  if (c!=EOF)
+  {
+    np++;
+    c=getc(f);
+    while (((c!=' ')&&(c!='\t')&&(c!='\n'))&&(c!=EOF))
+      c=getc(f);
+    if(c!=EOF) continue;
+   }
+ }
+printf("\n\n\n El numero de palabras del texto es: %d \n",np);
+}
+
+
+
+/*contaje del numero de veces que sale un caracter determinado*/
+void cont_veces(void)
+{
+long nv=0;
+char c;
+char car;
+
+printf("\n Que carcter quieres contar?: ");
+fflush(stdin);
+car=getchar();
+
+// Hacer código aquí
+
+printf("\n\n\n El caracter %c sale %ld veces en ese texto. \n",car,nv);
+}
