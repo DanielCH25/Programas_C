@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+/* Prototipo de la funcion */
+int misterio(char *s);
+
+int main() {
+    /* Definimos una cadena de texto para probar */
+    char texto[] = "Hola mundo";
+    
+    /* Llamamos a la funcion y guardamos el resultado */
+    int longitud = misterio(texto);
+    
+    /* Mostramos el resultado */
+    printf("La cadena '%s' tiene %d caracteres.\n", texto, longitud);
+    
+    return 0;
+}
+
+/* * Funcion misterio:
+ * Recibe un puntero a una cadena y cuenta sus caracteres 
+ * hasta encontrar el final '\0'
+ */
+int misterio(char *s) {
+    int x = 0;
+    
+    /* * Recorremos la cadena:
+     * 1. *s != '\0': Comprobamos si la letra actual NO es el final
+     * 2. s++: Saltamos a la siguiente letra en memoria
+     * 3. ++x: Sumamos 1 al contador
+     */
+    for ( ; *s != '\0' ; s++) {
+        ++x;
+    }
+    
+    return x;
+}
