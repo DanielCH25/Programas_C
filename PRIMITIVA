@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define NUMEROS_PRIMITIVA 7
+#define MAX_NUMERO 49
+#define MAX_REINTEGRO 9
+
+// FunciÛn para generar n˙meros ˙nicos ordenados
+void generar_combinacion(int combinacion[NUMEROS_PRIMITIVA]) {
+    int i, j, num, repetido;
+
+    for (i = 0; i < NUMEROS_PRIMITIVA; i++) {
+        do {
+            num = 1 + rand() % MAX_NUMERO;
+            repetido = 0;
+
+            // Verificar si el n˙mero ya est· en la combinaciÛn
+            for (j = 0; j < i; j++) {
+                if (combinacion[j] == num) {
+                    repetido = 1;
+                    break;
+                }
+            }
+        } while (repetido);
+
+        combinacion[i] = num;
+    }
+
+    // Ordenar los n˙meros
+    for (i = 0; i < NUMEROS_PRIMITIVA - 1; i++) {
+        for (j = i + 1; j < NUMEROS_PRIMITIVA; j++) {
+            if (combinacion[i] > combinacion[j]) {
+                int temp = combinacion[i];
+                combinacion[i] = combinacion[j];
+                combinacion[j] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int combinacion[NUMEROS_PRIMITIVA];
+    int reintegro;
+    int num_boletos, i, j;
+    char nombre_archivo[50];
+    FILE *archivo;
+
+    // Inicializar semilla para n˙meros aleatorios
+    srand(time(NULL));
+
+    printf("Generador de boletos de La Primitiva\n");
+    printf("øCu·ntos boletos deseas generar? ");
+    scanf("%d", &num_boletos);
+
+    printf("Introduce el nombre del archivo para guardar los boletos: ");
+    scanf("%s", nombre_archivo);
+
+    // Abrir archivo para escritura
+    archivo = fopen(nombre_archivo, "w");
+    if (archivo == NULL) {
+        printf("Error al crear el archivo.\n");
+        return 1;
+    }
+
+    // Generar y guardar cada boleto
+    for (i = 0; i < num_boletos; i++) {
+        generar_combinacion(combinacion);
+        reintegro = rand() % (MAX_REINTEGRO + 1);
+
+        // Escribir en archivo
+        fprintf(archivo, "Boleto %d:\n", i + 1);
+        fprintf(archivo, "CombinaciÛn: ");
+        for (j = 0; j < NUMEROS_PRIMITIVA; j++) {
+            fprintf(archivo, "%02d ", combinacion[j]);
+        }
+        fprintf(archivo, "\nReintegro: %d\n\n", reintegro);
+
+        // Mostrar por pantalla tambiÈn
+        printf("\nBoleto %d:\n", i + 1);
+        printf("CombinaciÛn: ");
+        for (j = 0; j < NUMEROS_PRIMITIVA; j++) {
+            printf("%02d ", combinacion[j]);
+        }
+        printf("\nReintegro: %d\n", reintegro);
+    }
+
+    fclose(archivo);
+    printf("\nSe han generado %d boletos y guardado en '%s'.\n", num_boletos, nombre_archivo);
+
+    return 0;
+}
